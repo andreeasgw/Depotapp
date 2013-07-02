@@ -1,7 +1,9 @@
 class CartsController < ApplicationController
   # GET /carts
   # GET /carts.json
-  def index
+ skip_before_filter :authorize, only: [:create, :update, :destroy] 
+
+ def index
     @carts = Cart.all
 
     respond_to do |format|

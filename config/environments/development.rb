@@ -14,7 +14,7 @@ Depot2::Application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
@@ -42,8 +42,8 @@ Depot2::Application.configure do
              port:           587, 
              domain:         "domain.of.sender.net",
              authentication: "plain",
-             user_name:      "dave",
-             password:       "secret",
+             user_name:      "test4andreea",
+             password:       "parola123",
              enable_starttls_auto: true
                    } 
 

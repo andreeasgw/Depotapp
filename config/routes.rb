@@ -1,4 +1,9 @@
 Depot2::Application.routes.draw do
+  get "admin/index"
+ scope '(:locale)' do
+  resources :users
+
+
   resources :orders
 
 
@@ -7,15 +12,19 @@ Depot2::Application.routes.draw do
 
   resources :carts
 
-
-  get "store/index"
-
   resources :products do
 	get :who_bought, on: :member
+    end
+
+   root to: 'store#index', as: 'store'
+  end 
+  get 'admin' => 'admin#index'
+  get "store/index"
+  controller :sessions do
+	get 'login' => :new
+	post 'login' => :create
+	delete 'logout' => :destroy
   end
-
-  root to: 'store#index', as: 'store'
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
