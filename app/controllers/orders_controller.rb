@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
 
-  skip_before_filter :autorize, only: [:new, :create]
+ # skip_before_filter :autorize, only: [:new, :create]
 
   def index
     @orders = Order.paginate page:  params[:page], order: 'created_at desc',
@@ -57,7 +57,7 @@ class OrdersController < ApplicationController
 	Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
         OrderNotifier.received(@order).deliver
-        format.html { redirect_to store_url, notice: 'Thank you for your order' }
+        format.html { redirect_to store_url, notice: I18n.t('.thanks') }
         format.json { render json: @order, status: :created, location: @order }
       else
 	@cart = current_cart

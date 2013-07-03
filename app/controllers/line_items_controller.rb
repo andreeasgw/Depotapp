@@ -1,7 +1,7 @@
 class LineItemsController < ApplicationController
   # GET /line_items
   # GET /line_items.json
-  skip_before_filter :authorize, only: :create
+ # skip_before_filter :authorize, only: :create
 
   def index
     @line_items = LineItem.all
@@ -48,8 +48,8 @@ class LineItemsController < ApplicationController
     @line_item.product = product
 
     respond_to do |format|
-      if @line_item.save
-        
+      if @line_item.save 
+        reset_session
         format.html { redirect_to store_url  }
         format.js  { @current_item = @line_item }
 	format.json { render json: @line_item, status: :created, location: @line_item }

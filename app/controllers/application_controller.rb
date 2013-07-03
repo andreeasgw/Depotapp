@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_filter :set_i18n_locale_from_params
-  before_filter :authorize
+ # before_filter :authorize
   protect_from_forgery
  
   private
@@ -34,4 +34,21 @@ class ApplicationController < ActionController::Base
     def default_url_options
 	{ locale: I18n.locale }
     end
+   
+
+  def increment
+        if session[:counter].nil?
+          session[:counter]=0
+        end
+        session[:counter] +=1
+      # if session[:counter] > 2
+       #   return session[:counter]
+      # end
+  end
+ 
+  def reset_session
+	if not session[:counter].nil?
+         session[:counter] = 0
+         end
+   end
 end
