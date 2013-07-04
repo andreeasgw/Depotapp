@@ -1,8 +1,8 @@
 class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
-
- # skip_before_filter :autorize, only: [:new, :create]
+ before_filter :set_i18n_locale_from_params
+ # skip_ efere_filter :autorize, only: [:new, :create]
 
   def index
     @orders = Order.paginate page:  params[:page], order: 'created_at desc',

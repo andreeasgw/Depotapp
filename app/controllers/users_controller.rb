@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  #skip_before_filter :set_i18n_locale_from_params
   # GET /users
   # GET /users.json
   def index

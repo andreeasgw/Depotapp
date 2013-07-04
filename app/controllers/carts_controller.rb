@@ -2,7 +2,7 @@ class CartsController < ApplicationController
   # GET /carts
   # GET /carts.json
 # skip_before_filter :authorize, only: [:create, :update, :destroy] 
-
+ before_filter :set_i18n_locale_from_params
  def index
     @carts = Cart.all
 

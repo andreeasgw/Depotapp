@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
-  skip_before_filter :authorize
+ # skip_before_filter :authorize
+ # skip_before_filter :set_i18n_locale_from_params
  
  def new
   end

@@ -9,9 +9,8 @@
 
 <% @products.each do |product| %>
   <div class= "entry">
-    <h3><%= product.title %></h3>
-  
-        <div class= "img"> <%= image_tag(product.image_url) %></div>          
+       <%= image_tag(product.image_url) %>
+         <h3><%= product.title %></h3>         
 	<p><%= sanitize(product.description)  %></p>
       
 	<div class = "price_line">
