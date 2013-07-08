@@ -2,6 +2,7 @@
    <% if flash[:alert] %>
 	<p id= "notice"><%= flash[:alert]%></p>
    <% end %>
+   <%= link_to "Sign in with Twitter", "/auth/twitter" %>
 
    <%= form_tag do %>
       <fieldset>

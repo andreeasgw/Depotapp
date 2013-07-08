@@ -21,10 +21,13 @@ Depot2::Application.routes.draw do
   end
 
  get 'store' => 'store#index'
- #  root to: 'store#index', as: 'store'
+ #  root to: 'sessions#create', as: 'login'
   end 
   get 'admin' => 'admin#index'
   get "store/index"
+ 
+  match  '/auth/:provider/callback', to: 'sessions#create', via: 'get'
+  match '/signout', to: "sessions#destroy", via: 'get'
   controller :sessions do
 	get 'login' => :new
 	post 'login' => :create

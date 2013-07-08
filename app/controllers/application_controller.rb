@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
  # before_filter :set_i18n_locale_from_params, :except => {:sessions=>:create }
   #before_filter :authorize
   protect_from_forgery
- 
+  helper_method :current_user 
   private
 
   def current_cart
@@ -12,7 +12,10 @@ class ApplicationController < ActionController::Base
 	session[:cart_id] = cart.id
 	cart
    end
-
+  
+  def current_user
+	@current_user ||= User.find(session[:user_id]) if session [:user_id]
+  end
   protected
 
     def authorize

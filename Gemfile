@@ -38,3 +38,6 @@ gem 'jquery-rails', '~> 2.3.0'
 # gem 'debugger'
 #
  gem 'will_paginate', '~> 3.0'
+
+ gem 'twitter'
+ gem 'omniauth-twitter'

@@ -1,7 +1,22 @@
 class UsersController < ApplicationController
   #skip_before_filter :set_i18n_locale_from_params
   # GET /users
-  # GET /users.json
+  # GET /users.json 
+  #
+
+  #def self.consumer
+   #   OAuth::Consumer.new("DzliyAsaZHH0Of5kIcPGvQ","XW17gQS2wIpwRGryFiL0zBYFFL4ZrqeBpcte5oi4", {:site=>"http://twitter.com"})
+ # end
+
+  #def create
+#	@request_token = UsersController.consumer.get_request_token
+# 	session[:request_token] = @request_token.token
+#       session[:request_token_secret] = @request_token.secret
+#	redirect_to @request_token.authorize_url
+#       return
+#  end
+
+
   def index
     @users = User.order(:name)
 
@@ -40,7 +55,7 @@ class UsersController < ApplicationController
 
   # POST /users
   # POST /users.json
-  def create
+  def create1
     @user = User.new(params[:user])
 
     respond_to do |format|
