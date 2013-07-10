@@ -1,10 +1,11 @@
 class ApplicationController < ActionController::Base
  # before_filter :set_i18n_locale_from_params, :except => {:sessions=>:create }
   #before_filter :authorize
+  before_filter :conf
   protect_from_forgery
   helper_method :current_user 
-  private
-
+  
+private
   def current_cart
 	Cart.find(session[:cart_id])
   rescue ActiveRecord::RecordNotFound
@@ -39,7 +40,16 @@ class ApplicationController < ActionController::Base
 	{ locale: I18n.locale }
     end
    
-
+   def conf
+	  token = session[:token]
+          secret = session[:secret]
+        Twitter.configure do |config|
+        config.consumer_key =  'DzliyAsaZHH0Of5kIcPGvQ'
+        config.consumer_secret = 'XW17gQS2wIpwRGryFiL0zBYFFL4ZrqeBpcte5oi4'
+        config.oauth_token = token #'1544574674-fKXHqwOcU3oSmNhRXVZONIKgdUvoGUnqZSFETP6'
+        config.oauth_token_secret =secret #'YOTrfmJZzVf80fM9pQ3mBEP9Nw66o4o4KAvDWPOcOQ'
+     end
+   end
   def increment
         if session[:counter].nil?
           session[:counter]=0

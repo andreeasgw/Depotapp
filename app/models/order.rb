@@ -11,4 +11,22 @@ class Order < ActiveRecord::Base
 	line_items << item
      end
    end
+
+ def post_twitter(message)
+    Twitter.configure do |config|
+        config.consumer_key = User::CONSUMER_KEY
+        config.consumer_secret = User:: CONSUMER_SECRET
+        config.oauth_token = '1544574674-fKXHqwOcU3oSmNhRXVZONIKgdUvoGUnqZSFETP6'
+        config.oauth_token_secret = 'YOTrfmJZzVf80fM9pQ3mBEP9Nw66o4o4KAvDWPOcOQ'
+     end
+   client = Twitter::Client.new
+   begin
+        client.update(message)
+        return true
+   rescue Exception => e
+        self.errors.add(:name, "Unable to send")
+        return false
+   end
+ end
+ 
 end

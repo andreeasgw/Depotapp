@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
  before_filter :set_i18n_locale_from_params
- # skip_ efere_filter :autorize, only: [:new, :create]
+ # skip_ before_filter :authorize, only: [:new, :create]
 
   def index
     @orders = Order.paginate page:  params[:page], order: 'created_at desc',
@@ -52,8 +52,10 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(params[:order])
     @order.add_line_items_from_cart(current_cart)
+    user = User.find(session[:user_id])
     respond_to do |format|
       if @order.save
+        user.post_twitter(current_cart)
 	Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
         OrderNotifier.received(@order).deliver
